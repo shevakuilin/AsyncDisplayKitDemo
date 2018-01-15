@@ -18,6 +18,28 @@ class XTNewVoteTimelineCellNode: ASCellNode {
     let bottomLintNode = ASImageNode()                  // 底部分割线
     let topSeparateNode = ASImageNode()                 // 顶部分隔区域
     
+    enum ElementScale {
+        case photoScale         // 图片比例
+        case specialPhotoScale  // 特殊图片比例 [2x2格式]
+        case photoSpacing       // 图片间距
+        case bottomSpacing      // 底部间距
+        case photoMargin        // 图片边距
+        
+        static var value : CGFloat = 0.0
+        var instanceConstraint : CGFloat {
+            switch self {
+            case .photoScale: UIScreenAttribute.width == 320 ? (ElementScale.value = 3.1):(ElementScale.value = 3.08)
+            case .specialPhotoScale: UIScreenAttribute.width == 320 ? (ElementScale.value = 3.045
+                ):(ElementScale.value = 3.038)
+            case .photoSpacing: ElementScale.value = 4.0
+            case .bottomSpacing: ElementScale.value = 12.0
+            case .photoMargin: ElementScale.value = 14.0
+            }
+            
+            return ElementScale.value
+        }
+    }
+    
     struct ElementSize {
         static let userInfoHeight: CGFloat = 60
         static let userInfoWidth: CGFloat = UIScreenAttribute.width
@@ -28,6 +50,11 @@ class XTNewVoteTimelineCellNode: ASCellNode {
         static let bottomLineHeight: CGFloat = 1
         static let topSeparateWidth: CGFloat = UIScreenAttribute.width
         static let topSeparateHeight: CGFloat = 9
+        
+        static let photoNodeHeightNone: CGFloat = 0
+        static let photoNodeHeightOnce: CGFloat = (UIScreenAttribute.width - (ElementScale.photoMargin.instanceConstraint * 2)) / ElementScale.photoScale.instanceConstraint
+        static let photoNodeHeightDouble: CGFloat = (ElementSize.photoNodeHeightOnce * 2) + 8
+        static let photoNodeHeightTriplex: CGFloat = (ElementSize.photoNodeHeightOnce * 3) + 12
     }
     
     struct ElementSpacing {
@@ -53,12 +80,23 @@ class XTNewVoteTimelineCellNode: ASCellNode {
         self.addSubnode(userInfoNode)
         
         textContentNode.style.width = ASDimensionMakeWithPoints(ElementSize.textContetWidth)
-        let contentStr = "https://www.bilibili.com 研究人员开发的工具 BootStomp 能识别出两个 bootloader 的漏洞，😆😆攻击者可以在 root 权限下利用这两个漏洞解锁设备并打破信任链 ... 研究人员在华为 P8 的 Android bootloader 中发现了 5 个重要的漏洞，https://www.bilibili.com 分别是任意内存写和分析保存在 boot 分区的 Linux。 https://www.bilibili.com  Http://     Https"
+        let strArr = ["https://www.bilibili.com 研究人员开发的工具 BootStomp 能识别出两个 bootloader 的漏洞，😆😆攻击者可以在 root 权限下利用这两个漏洞解锁设备并打破信任链 ... 研究人员在华为 P8 的 Android bootloader 中发现了 5 个重要的漏洞，https://www.bilibili.com 分别是任意内存写和分析保存在 boot 分区的 Linux。 https://www.bilibili.com  Http://     Https", "苹果副总裁：Siri 并不是一个简单的游戏，苹果公司 Siri 办公环境曝光", "2017年9月1号礼拜五，西雅图bellevue 警方宣布西雅图历史上最大规模，为期一周的名为“Operation On Demand”中文译名《抓住欲望之狼》的钓鱼行动圆满结束。https://www.bilibili.com 超过一百一十名的嫖客在这次行动中被抓。", "能耐心看完的人不会参与到无谓的争执循环里去，历史长河里，人类的结构也一向如此。时代只让科技进步，文明都是从零开始。 ​", "前几日刷屏号称强过谷歌翻译的DeepL，经实测的结果是......"]
+        let contentStr = strArr[kRandomInRange(0, strArr.count - 1)]
         showAttributedStringLink(contentStr)
         self.addSubnode(textContentNode)
         
         photoContenNode.style.width = ASDimensionMakeWithPoints(ElementSize.photoContenWidth)
-        photoContenNode.style.height = ASDimensionMakeWithPoints(360)
+        photoContenNode.imagesCount = kRandomInRange(0, 9)
+        if photoContenNode.imagesCount == 0 {
+            photoContenNode.style.height = ASDimensionMakeWithPoints(ElementSize.photoNodeHeightNone + 13)
+        } else if photoContenNode.imagesCount < 4 && photoContenNode.imagesCount > 0 {
+            photoContenNode.style.height = ASDimensionMakeWithPoints(ElementSize.photoNodeHeightOnce + 23)
+        } else if photoContenNode.imagesCount > 3 && photoContenNode.imagesCount < 7 {
+            photoContenNode.style.height = ASDimensionMakeWithPoints(ElementSize.photoNodeHeightDouble + 23)
+        } else if photoContenNode.imagesCount <= 9 && photoContenNode.imagesCount > 6 {
+            photoContenNode.style.height = ASDimensionMakeWithPoints(ElementSize.photoNodeHeightTriplex + 23)
+        }
+//        photoContenNode.style.height = ASDimensionMakeWithPoints(360)
         self.addSubnode(photoContenNode)
         
         bottomNode.style.width = ASDimensionMakeWithPoints(ElementSize.bottomWidth)
@@ -74,6 +112,11 @@ class XTNewVoteTimelineCellNode: ASCellNode {
         topSeparateNode.style.height = ASDimensionMakeWithPoints(ElementSize.topSeparateHeight)
         topSeparateNode.backgroundColor = kColor(239, 242, 245)
         self.addSubnode(topSeparateNode)
+    }
+    
+    private func randomInRange(range: Range<Int>) -> Int {
+        let count = UInt32(range.upperBound - range.lowerBound)
+        return Int(arc4random_uniform(count)) + range.lowerBound
     }
     
     // MARK: 富文本超链接

@@ -115,6 +115,6 @@ class XTNewVoteUserInfoView: ASDisplayNode {
                                                      rightHorizontalStackSpec])
 
         
-        return ASInsetLayoutSpec(insets: UIEdgeInsetsMake(10, 10, 10, 10), child: stackSpec)
+        return ASInsetLayoutSpec(insets: UIEdgeInsetsMake(0, 10, 0, 0), child: stackSpec)
     }
 }

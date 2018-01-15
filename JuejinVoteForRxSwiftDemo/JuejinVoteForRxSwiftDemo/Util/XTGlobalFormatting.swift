@@ -46,6 +46,16 @@ public func kAttributedStyle(_ font: UIFont,
     ]
 }
 
+
+
+public func kRandomInRange(_ start: Int,
+                           _ end: Int) -> Int {
+    let range = Range(start...end)
+    return Int(arc4random_uniform(UInt32(range.upperBound - range.lowerBound))) + range.lowerBound
+}
+
+
+
 struct UIScreenAttribute {
     static let bounds = UIScreen.main.bounds
     static let width = UIScreen.main.bounds.size.width
