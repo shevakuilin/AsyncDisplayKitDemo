@@ -87,14 +87,20 @@ class XTNewVoteTimelineCellNode: ASCellNode {
         
         photoContenNode.style.width = ASDimensionMakeWithPoints(ElementSize.photoContenWidth)
         photoContenNode.imagesCount = kRandomInRange(0, 9)
-        if photoContenNode.imagesCount == 0 {
-            photoContenNode.style.height = ASDimensionMakeWithPoints(ElementSize.photoNodeHeightNone + 13)
-        } else if photoContenNode.imagesCount < 4 && photoContenNode.imagesCount > 0 {
-            photoContenNode.style.height = ASDimensionMakeWithPoints(ElementSize.photoNodeHeightOnce + 23)
-        } else if photoContenNode.imagesCount > 3 && photoContenNode.imagesCount < 7 {
+        if photoContenNode.imagesCount == 4 {
             photoContenNode.style.height = ASDimensionMakeWithPoints(ElementSize.photoNodeHeightDouble + 23)
-        } else if photoContenNode.imagesCount <= 9 && photoContenNode.imagesCount > 6 {
-            photoContenNode.style.height = ASDimensionMakeWithPoints(ElementSize.photoNodeHeightTriplex + 23)
+            photoContenNode.style.width = ASDimensionMakeWithPoints(ElementSize.photoNodeHeightDouble - 2.2)
+            
+        } else {
+            if photoContenNode.imagesCount == 0 {
+                photoContenNode.style.height = ASDimensionMakeWithPoints(ElementSize.photoNodeHeightNone + 13)
+            } else if photoContenNode.imagesCount < 4 && photoContenNode.imagesCount > 0 {
+                photoContenNode.style.height = ASDimensionMakeWithPoints(ElementSize.photoNodeHeightOnce + 23)
+            } else if photoContenNode.imagesCount > 3 && photoContenNode.imagesCount < 7 {
+                photoContenNode.style.height = ASDimensionMakeWithPoints(ElementSize.photoNodeHeightDouble + 23)
+            } else if photoContenNode.imagesCount <= 9 && photoContenNode.imagesCount > 6 {
+                photoContenNode.style.height = ASDimensionMakeWithPoints(ElementSize.photoNodeHeightTriplex + 23)
+            }
         }
 //        photoContenNode.style.height = ASDimensionMakeWithPoints(360)
         self.addSubnode(photoContenNode)
@@ -200,9 +206,9 @@ class XTNewVoteTimelineCellNode: ASCellNode {
         let verticalStackSpec = ASStackLayoutSpec(direction: .vertical,
                                                   spacing: 0,
                                                   justifyContent: .start,
-                                                  alignItems: .center,
+                                                  alignItems: .start,
                                                   children: [topSeparateNode, userInfoNode, textContentNode, photoContenNode, bottomLintNode, bottomNode])
-  
+      
         return ASInsetLayoutSpec(insets: UIEdgeInsetsMake(0, 0, 0, 0), child: verticalStackSpec)
     }
 }

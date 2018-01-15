@@ -37,7 +37,7 @@ class XTNewVoteTextContentNode: ASDisplayNode {
     
     override func layout() {
         super.layout()
-        labelNode.frame = bounds
+        labelNode.frame = CGRect(x: 10, y: bounds.origin.y, width: UIScreenAttribute.width - 20, height: bounds.size.height)
     }
     
     override func calculateSizeThatFits(_ constrainedSize: CGSize) -> CGSize {

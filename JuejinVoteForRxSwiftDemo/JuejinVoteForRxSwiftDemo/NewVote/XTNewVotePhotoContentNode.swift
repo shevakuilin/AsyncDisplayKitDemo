@@ -52,14 +52,20 @@ class XTNewVotePhotoContentNode: ASDisplayNode {
     
     public var imagesCount = Int() {
         didSet {
-            if imagesCount == 0 {
-                photosNode.style.height = ASDimensionMakeWithPoints(ElementSize.photoNodeHeightNone + 13)
-            } else if imagesCount < 4 && imagesCount > 0 {
-                photosNode.style.height = ASDimensionMakeWithPoints(ElementSize.photoNodeHeightOnce + 23)
-            } else if imagesCount > 3 && imagesCount < 7 {
+            if imagesCount == 4 {
                 photosNode.style.height = ASDimensionMakeWithPoints(ElementSize.photoNodeHeightDouble + 23)
-            } else if imagesCount <= 9 && imagesCount > 6 {
-                photosNode.style.height = ASDimensionMakeWithPoints(ElementSize.photoNodeHeightTriplex + 23)
+                photosNode.style.width = ASDimensionMakeWithPoints(ElementSize.photoNodeHeightDouble - 2.2)
+//                photosNode.style.alignSelf = .start
+            } else {
+                if imagesCount == 0 {
+                    photosNode.style.height = ASDimensionMakeWithPoints(ElementSize.photoNodeHeightNone + 13)
+                } else if imagesCount < 4 && imagesCount > 0 {
+                    photosNode.style.height = ASDimensionMakeWithPoints(ElementSize.photoNodeHeightOnce + 23)
+                } else if imagesCount > 3 && imagesCount < 7 {
+                    photosNode.style.height = ASDimensionMakeWithPoints(ElementSize.photoNodeHeightDouble + 23)
+                } else if imagesCount <= 9 && imagesCount > 6 {
+                    photosNode.style.height = ASDimensionMakeWithPoints(ElementSize.photoNodeHeightTriplex + 23)
+                }
             }
         }
     }
@@ -88,7 +94,7 @@ class XTNewVotePhotoContentNode: ASDisplayNode {
                                                   alignItems: .start,
                                                   children: [photosNode])
         
-        return ASInsetLayoutSpec(insets: UIEdgeInsetsMake(10, 0, 10, 0), child: verticalStackSpec)
+        return ASInsetLayoutSpec(insets: UIEdgeInsetsMake(10, 10, 10, -10), child: verticalStackSpec)
     }
     
 }
