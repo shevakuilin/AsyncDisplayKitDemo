@@ -1,0 +1,6 @@
+framework module Pods_JuejinVoteForRxSwiftDemo {
+  umbrella header "Pods-JuejinVoteForRxSwiftDemo-umbrella.h"
+
+  export *
+  module * { export * }
+}
