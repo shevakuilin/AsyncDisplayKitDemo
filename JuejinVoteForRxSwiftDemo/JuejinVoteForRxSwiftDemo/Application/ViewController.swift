@@ -13,11 +13,13 @@ class ViewController: UIViewController {
     let rowCount: Int = 20
     var headerView: UIView!
     var topicView: UIView!
+    let HEADERVIEW_OFFSET_Y: CGFloat = IS_IPHONE_X ? 50:26
+    let TOPICVIEW_OFFSET_Y: CGFloat = IS_IPHONE_X ? 150:174 // topicView高度 - HEADERVIEW_OFFSET_Y
 
     override func viewDidLoad() {
         super.viewDidLoad()
         pagerNode.setDataSource(self)
-        self.pagerNode.frame = CGRect(x: 0, y: 64, width: UIScreenAttribute.width, height: UIScreenAttribute.height)
+        self.pagerNode.frame = CGRect(x: 0, y: IPHONE_NORMAL_NAV_HEIGHT, width: UIScreenAttribute.width, height: UIScreenAttribute.height)
         self.view.addSubnode(pagerNode)
         self.title = "沸点"
         self.view.backgroundColor = kColor(239, 242, 245)
@@ -28,7 +30,7 @@ class ViewController: UIViewController {
     private func initElements() {
         topicView = UIView()
         topicView.backgroundColor = .red
-        topicView.frame = CGRect(x: 0, y: 64, width: UIScreenAttribute.width, height: 200)
+        topicView.frame = CGRect(x: 0, y: IPHONE_NORMAL_NAV_HEIGHT, width: UIScreenAttribute.width, height: 200)
         self.view.addSubview(topicView)
         
         let introductionLable = UILabel()
@@ -56,7 +58,7 @@ class ViewController: UIViewController {
 //    override func viewWillLayoutSubviews() {
 //        super.viewWillLayoutSubviews()
 //
-//        self.pagerNode.frame = CGRect(x: 0, y: 64, width: UIScreenAttribute.width, height: UIScreenAttribute.height)
+//        self.pagerNode.frame = CGRect(x: 0, y: IPHONE_NORMAL_NAV_HEIGHT, width: UIScreenAttribute.width, height: UIScreenAttribute.height)
 //    }
 
     // NOTE: 隐藏状态栏
@@ -77,18 +79,18 @@ extension ViewController: ASPagerDataSource {
                     let offsetY = scrollView.contentOffset.y
                     printLog("监听timeline开始滚动, \(offsetY)")
                     if offsetY >= -38 {
-                        strongSelf.headerView.frame = kFrame(0, 64, UIScreenAttribute.width, 38)
-                        strongSelf.topicView.frame = kFrame(0, -(strongSelf.topicView.frame.size.height - 64), UIScreenAttribute.width, 200)
+                        strongSelf.headerView.frame = kFrame(0, IPHONE_NORMAL_NAV_HEIGHT, UIScreenAttribute.width, 38)
+                        strongSelf.topicView.frame = kFrame(0, -(strongSelf.topicView.frame.size.height - IPHONE_NORMAL_NAV_HEIGHT), UIScreenAttribute.width, 200)
                     } else {
-                        strongSelf.headerView.frame = kFrame(0, -offsetY + 26, UIScreenAttribute.width, 38)
-                        strongSelf.topicView.frame = kFrame(0, -offsetY - 174, UIScreenAttribute.width, 200)
+                        strongSelf.headerView.frame = kFrame(0, -offsetY + strongSelf.HEADERVIEW_OFFSET_Y, UIScreenAttribute.width, 38)
+                        strongSelf.topicView.frame = kFrame(0, -offsetY - strongSelf.TOPICVIEW_OFFSET_Y, UIScreenAttribute.width, 200)
                     }
                 })
                 timelineVC.scrollViewDidEndDraggingDelegate.delegate(to: strongSelf, with: { (strongSelf, scrollView) in
                     let offsetY = scrollView.contentOffset.y
                     printLog("监听timeline已经停止拖拽, \(offsetY)")
                     if offsetY >= 38 {
-                        let tempFloat: CGFloat = 64 + 38
+                        let tempFloat: CGFloat = IPHONE_NORMAL_NAV_HEIGHT + 38
                         NotificationCenter.default.post(name: kNotificationName(TOPIC_DETAILED_NEW_TIMELINE_LINKAGE), object: nil, userInfo: ["offsetY": tempFloat])
                     } else {
                         let tempFloat: CGFloat = offsetY
@@ -109,18 +111,18 @@ extension ViewController: ASPagerDataSource {
                     let offsetY = scrollView.contentOffset.y
                     printLog("监听timeline开始滚动, \(offsetY)")
                     if offsetY >= -38 {
-                        strongSelf.headerView.frame = kFrame(0, 64, UIScreenAttribute.width, 38)
-                        strongSelf.topicView.frame = kFrame(0, -(strongSelf.topicView.frame.size.height - 64), UIScreenAttribute.width, 200)
+                        strongSelf.headerView.frame = kFrame(0, IPHONE_NORMAL_NAV_HEIGHT, UIScreenAttribute.width, 38)
+                        strongSelf.topicView.frame = kFrame(0, -(strongSelf.topicView.frame.size.height - IPHONE_NORMAL_NAV_HEIGHT), UIScreenAttribute.width, 200)
                     } else {
-                        strongSelf.headerView.frame = kFrame(0, -offsetY + 26, UIScreenAttribute.width, 38)
-                        strongSelf.topicView.frame = kFrame(0, -offsetY - 174, UIScreenAttribute.width, 200)
+                        strongSelf.headerView.frame = kFrame(0, -offsetY + strongSelf.HEADERVIEW_OFFSET_Y, UIScreenAttribute.width, 38)
+                        strongSelf.topicView.frame = kFrame(0, -offsetY - strongSelf.TOPICVIEW_OFFSET_Y, UIScreenAttribute.width, 200)
                     }
                 })
                 timelineVC.scrollViewDidEndDraggingDelegate.delegate(to: strongSelf, with: { (strongSelf, scrollView) in
                     let offsetY = scrollView.contentOffset.y
                     printLog("监听timeline已经停止拖拽, \(offsetY)")
                     if offsetY >= -38 {
-                        let tempFloat: CGFloat = 64 + 38
+                        let tempFloat: CGFloat = IPHONE_NORMAL_NAV_HEIGHT + 38
                         NotificationCenter.default.post(name: kNotificationName(TOPIC_DETAILED_HOT_TIMELINE_LINKAGE), object: nil, userInfo: ["offsetY": tempFloat])
                     } else {
                         let tempFloat: CGFloat = offsetY
@@ -144,7 +146,7 @@ extension ViewController: ASPagerDataSource {
 //        let offsetY = scrollView.contentOffset.y
 //        printLog("监听timeline已经停止拖拽, \(offsetY)")
 //        if offsetY >= 25 {
-//            NotificationCenter.default.post(name: kNotificationName(TOPIC_DETAILED_TIMELINE_LINKAGE), object: nil, userInfo: ["offsetY": 64 + 38])
+//            NotificationCenter.default.post(name: kNotificationName(TOPIC_DETAILED_TIMELINE_LINKAGE), object: nil, userInfo: ["offsetY": IPHONE_NORMAL_NAV_HEIGHT + 38])
 //        } else {
 //            NotificationCenter.default.post(name: kNotificationName(TOPIC_DETAILED_TIMELINE_LINKAGE), object: nil, userInfo: ["offsetY": offsetY])
 //        }
@@ -154,7 +156,7 @@ extension ViewController: ASPagerDataSource {
 //        let offsetY = scrollView.contentOffset.y
 //        printLog("监听timeline开始滚动, \(offsetY)")
 //            if offsetY >= -25 {
-//                headerView.frame = CGRect(x: 0, y: 64, width: UIScreenAttribute.width, height: 38)
+//                headerView.frame = CGRect(x: 0, y: IPHONE_NORMAL_NAV_HEIGHT, width: UIScreenAttribute.width, height: 38)
 //            } else {
 //                headerView.frame = CGRect(x: 0, y: -offsetY + 38, width: UIScreenAttribute.width, height: 38)
 //            }
