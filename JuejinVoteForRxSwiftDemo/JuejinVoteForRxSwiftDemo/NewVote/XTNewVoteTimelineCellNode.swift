@@ -168,24 +168,24 @@ class XTNewVoteTimelineCellNode: ASCellNode {
                     let highlight = YYTextHighlight(backgroundColor: nil)
                     highlight.setColor(kColor(0, 118, 255))
                     
-//                    weak var weakSelf = self
-//                    guard let wSelf = weakSelf else {
-//                        return
-//                    }
+                    //                    weak var weakSelf = self
+                    //                    guard let wSelf = weakSelf else {
+                    //                        return
+                    //                    }
                     highlight.tapAction = {
                         _, _, _, _ in
                         printLog("tapped this link !!")
                         let host:String = url.host ?? ""
                         if host == "juejin.im" || host == "gold.xitu.io" {
                             // 应用内点击掘金链接跳转
-//                            XTApplicationHandle.clickLinkJumpInApplication(with: url, parentView: self)
+                            //                            XTApplicationHandle.clickLinkJumpInApplication(with: url, parentView: self)
                         } else {
-//                            if let pushUrlVc = R.storyboard.main.pushUrl() {
-//                                pushUrlVc.urlStr = "\(url)"
-//                                pushUrlVc.isPush = true
-//                                pushUrlVc.hidesBottomBarWhenPushed = true
-//                                wSelf.getCurrentViewController().show(pushUrlVc, sender: nil)
-//                            }
+                            //                            if let pushUrlVc = R.storyboard.main.pushUrl() {
+                            //                                pushUrlVc.urlStr = "\(url)"
+                            //                                pushUrlVc.isPush = true
+                            //                                pushUrlVc.hidesBottomBarWhenPushed = true
+                            //                                wSelf.getCurrentViewController().show(pushUrlVc, sender: nil)
+                            //                            }
                         }
                     }
                     attributedStr.yy_setTextHighlight(highlight, range: highlightRange)

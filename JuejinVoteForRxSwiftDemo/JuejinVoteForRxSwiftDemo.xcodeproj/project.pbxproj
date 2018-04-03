@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		22C9E857B69125080CA0C21F /* Pods_JuejinVoteForRxSwiftDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5EBA627E9CFA599B19869869 /* Pods_JuejinVoteForRxSwiftDemo.framework */; };
+		9F3AA133207214FC004C45DE /* XTNotificationKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F3AA132207214FC004C45DE /* XTNotificationKey.swift */; };
+		9F3AA13720723F96004C45DE /* XTNewVoteOtherTimelineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F3AA13620723F96004C45DE /* XTNewVoteOtherTimelineViewController.swift */; };
+		9F3AA13920724125004C45DE /* Delegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F3AA13820724125004C45DE /* Delegate.swift */; };
 		9F8BC43620073F9800B2256D /* XTNewVoteUserInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F8BC43520073F9800B2256D /* XTNewVoteUserInfoView.swift */; };
 		9F8BC438200853A400B2256D /* XTNewVoteTimelineCellNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F8BC437200853A400B2256D /* XTNewVoteTimelineCellNode.swift */; };
 		9F8BC43C2008F75F00B2256D /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F8BC43B2008F75F00B2256D /* R.generated.swift */; };
@@ -36,6 +39,9 @@
 		9FA4BD7520035055007FC2C9 /* XTNewVoteModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FA4BD7420035055007FC2C9 /* XTNewVoteModel.swift */; };
 		9FC4CBED200C94B20027D8E4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FC4CBEC200C94B20027D8E4 /* ViewController.swift */; };
 		9FC4CBEF200CAB520027D8E4 /* XTNetworkImageNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FC4CBEE200CAB520027D8E4 /* XTNetworkImageNode.swift */; };
+		9FC4E6482043F25D005C70B2 /* XTOtherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FC4E6472043F25D005C70B2 /* XTOtherViewController.swift */; };
+		9FC4E64A2043F2F8005C70B2 /* XTNewVoteTimelineCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FC4E6492043F2F8005C70B2 /* XTNewVoteTimelineCellView.swift */; };
+		9FFA601D204657500025C70E /* XTContextNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FFA601C204657500025C70E /* XTContextNode.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +65,9 @@
 		0AFE25F544F7EED7DC9347BD /* Pods-JuejinVoteForRxSwiftDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JuejinVoteForRxSwiftDemo.release.xcconfig"; path = "Pods/Target Support Files/Pods-JuejinVoteForRxSwiftDemo/Pods-JuejinVoteForRxSwiftDemo.release.xcconfig"; sourceTree = "<group>"; };
 		519D31C1E0E29DF20AC10BF4 /* Pods-JuejinVoteForRxSwiftDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JuejinVoteForRxSwiftDemo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-JuejinVoteForRxSwiftDemo/Pods-JuejinVoteForRxSwiftDemo.debug.xcconfig"; sourceTree = "<group>"; };
 		5EBA627E9CFA599B19869869 /* Pods_JuejinVoteForRxSwiftDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_JuejinVoteForRxSwiftDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9F3AA132207214FC004C45DE /* XTNotificationKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XTNotificationKey.swift; sourceTree = "<group>"; };
+		9F3AA13620723F96004C45DE /* XTNewVoteOtherTimelineViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XTNewVoteOtherTimelineViewController.swift; sourceTree = "<group>"; };
+		9F3AA13820724125004C45DE /* Delegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Delegate.swift; sourceTree = "<group>"; };
 		9F8BC43520073F9800B2256D /* XTNewVoteUserInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XTNewVoteUserInfoView.swift; sourceTree = "<group>"; };
 		9F8BC437200853A400B2256D /* XTNewVoteTimelineCellNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XTNewVoteTimelineCellNode.swift; sourceTree = "<group>"; };
 		9F8BC43B2008F75F00B2256D /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = SOURCE_ROOT; };
@@ -101,6 +110,9 @@
 		9FA4BD7420035055007FC2C9 /* XTNewVoteModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XTNewVoteModel.swift; sourceTree = "<group>"; };
 		9FC4CBEC200C94B20027D8E4 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		9FC4CBEE200CAB520027D8E4 /* XTNetworkImageNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XTNetworkImageNode.swift; sourceTree = "<group>"; };
+		9FC4E6472043F25D005C70B2 /* XTOtherViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XTOtherViewController.swift; sourceTree = "<group>"; };
+		9FC4E6492043F2F8005C70B2 /* XTNewVoteTimelineCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XTNewVoteTimelineCellView.swift; sourceTree = "<group>"; };
+		9FFA601C204657500025C70E /* XTContextNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XTContextNode.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -141,6 +153,7 @@
 		9F8BC43A2008F72600B2256D /* Script */ = {
 			isa = PBXGroup;
 			children = (
+				9FA4BD3520034771007FC2C9 /* AppDelegate.swift */,
 				9F8BC43B2008F75F00B2256D /* R.generated.swift */,
 			);
 			path = Script;
@@ -201,6 +214,9 @@
 				9FA4BD3C20034771007FC2C9 /* Assets.xcassets */,
 				9FA4BD3E20034771007FC2C9 /* LaunchScreen.storyboard */,
 				9FA4BD4120034771007FC2C9 /* Info.plist */,
+				9FC4E6472043F25D005C70B2 /* XTOtherViewController.swift */,
+				9FC4E6492043F2F8005C70B2 /* XTNewVoteTimelineCellView.swift */,
+				9FFA601C204657500025C70E /* XTContextNode.swift */,
 			);
 			path = JuejinVoteForRxSwiftDemo;
 			sourceTree = "<group>";
@@ -227,6 +243,7 @@
 			isa = PBXGroup;
 			children = (
 				9FA4BD63200347CB007FC2C9 /* XTNewVoteTimelineViewController.swift */,
+				9F3AA13620723F96004C45DE /* XTNewVoteOtherTimelineViewController.swift */,
 				9F8BC437200853A400B2256D /* XTNewVoteTimelineCellNode.swift */,
 				9F8BC43520073F9800B2256D /* XTNewVoteUserInfoView.swift */,
 				9F8BC43D200A212D00B2256D /* XTNewVoteTextContentNode.swift */,
@@ -245,6 +262,8 @@
 				9F8BC447200C404000B2256D /* TTFaveButton */,
 				9FA4BD6520034804007FC2C9 /* XTGlobalFormatting.swift */,
 				9FA4BD6920034A36007FC2C9 /* Then.swift */,
+				9F3AA132207214FC004C45DE /* XTNotificationKey.swift */,
+				9F3AA13820724125004C45DE /* Delegate.swift */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -261,7 +280,6 @@
 		9FA4BD6C20034A78007FC2C9 /* Application */ = {
 			isa = PBXGroup;
 			children = (
-				9FA4BD3520034771007FC2C9 /* AppDelegate.swift */,
 				9F8BC45D200C421000B2256D /* JuejinVoteForRxSwiftDemo-Bridging-Header.h */,
 				9FC4CBEC200C94B20027D8E4 /* ViewController.swift */,
 			);
@@ -468,6 +486,7 @@
 				"${BUILT_PRODUCTS_DIR}/PINRemoteImage/PINRemoteImage.framework",
 				"${BUILT_PRODUCTS_DIR}/R.swift.Library/Rswift.framework",
 				"${BUILT_PRODUCTS_DIR}/Result/Result.framework",
+				"${PODS_ROOT}/Reveal-SDK/RevealServer-13/iOS/RevealServer.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
 				"${BUILT_PRODUCTS_DIR}/Texture/AsyncDisplayKit.framework",
@@ -484,6 +503,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PINRemoteImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Rswift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Result.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RevealServer.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AsyncDisplayKit.framework",
@@ -534,12 +554,16 @@
 				9F8BC442200A354300B2256D /* XTNewVotePhotoNode.swift in Sources */,
 				9F8BC446200C3FB900B2256D /* XTNewVoteThumbNode.swift in Sources */,
 				9F8BC457200C404000B2256D /* UIView+TTKit.m in Sources */,
+				9FC4E64A2043F2F8005C70B2 /* XTNewVoteTimelineCellView.swift in Sources */,
 				9F8BC459200C404000B2256D /* TTFaveIcon.m in Sources */,
+				9F3AA13920724125004C45DE /* Delegate.swift in Sources */,
 				9F8BC456200C404000B2256D /* UIView+TTAutoLayout.m in Sources */,
 				9F8BC45C200C404000B2256D /* TTEasing.m in Sources */,
 				9FC4CBED200C94B20027D8E4 /* ViewController.swift in Sources */,
 				9FA4BD7020034AEF007FC2C9 /* XTRequestParamater.swift in Sources */,
 				9FA4BD6A20034A36007FC2C9 /* Then.swift in Sources */,
+				9F3AA13720723F96004C45DE /* XTNewVoteOtherTimelineViewController.swift in Sources */,
+				9FC4E6482043F25D005C70B2 /* XTOtherViewController.swift in Sources */,
 				9FA4BD6620034804007FC2C9 /* XTGlobalFormatting.swift in Sources */,
 				9F8BC43E200A212D00B2256D /* XTNewVoteTextContentNode.swift in Sources */,
 				9FA4BD64200347CB007FC2C9 /* XTNewVoteTimelineViewController.swift in Sources */,
@@ -552,7 +576,9 @@
 				9F8BC45A200C404000B2256D /* TTRing.m in Sources */,
 				9F8BC43C2008F75F00B2256D /* R.generated.swift in Sources */,
 				9F8BC444200C3E2E00B2256D /* XTNewVoteBottomNode.swift in Sources */,
+				9FFA601D204657500025C70E /* XTContextNode.swift in Sources */,
 				9FA4BD3620034771007FC2C9 /* AppDelegate.swift in Sources */,
+				9F3AA133207214FC004C45DE /* XTNotificationKey.swift in Sources */,
 				9F8BC438200853A400B2256D /* XTNewVoteTimelineCellNode.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -720,7 +746,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = shevakuilin.JuejinVoteForRxSwiftDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "/Users/xiangkuilin/Desktop/AsyncDisplayKitDemo/JuejinVoteForRxSwiftDemo/JuejinVoteForRxSwiftDemo/Application/JuejinVoteForRxSwiftDemo-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "/Users/xiangkuilin/Desktop/Demos/AsyncDisplayKitDemo/JuejinVoteForRxSwiftDemo/JuejinVoteForRxSwiftDemo/Application/JuejinVoteForRxSwiftDemo-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -740,7 +766,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = shevakuilin.JuejinVoteForRxSwiftDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "/Users/xiangkuilin/Desktop/AsyncDisplayKitDemo/JuejinVoteForRxSwiftDemo/JuejinVoteForRxSwiftDemo/Application/JuejinVoteForRxSwiftDemo-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "/Users/xiangkuilin/Desktop/Demos/AsyncDisplayKitDemo/JuejinVoteForRxSwiftDemo/JuejinVoteForRxSwiftDemo/Application/JuejinVoteForRxSwiftDemo-Bridging-Header.h";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

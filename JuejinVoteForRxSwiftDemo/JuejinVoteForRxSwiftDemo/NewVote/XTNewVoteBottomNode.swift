@@ -40,17 +40,14 @@ class XTNewVoteBottomNode: ASDisplayNode {
         super.didLoad()
         
         weak var weakSelf = self
-        guard let wself = weakSelf else{
-            return
-        }
         
         thumbNode.thumbClickBlock = { (isSelected) in
             // TODO: 点击点赞按钮
             print("点击了点赞按钮!!")
             if isSelected {
-                wself.thumbCountNode.attributedText = NSAttributedString(string: "13", attributes: kAttributedStyle(kFont(15), kColor(55, 199, 0)))
+                weakSelf?.thumbCountNode.attributedText = NSAttributedString(string: "13", attributes: kAttributedStyle(kFont(15), kColor(55, 199, 0)))
             } else {
-                wself.thumbCountNode.attributedText = NSAttributedString(string: "12", attributes: kAttributedStyle(kFont(15), kColor(138, 147, 160)))
+                weakSelf?.thumbCountNode.attributedText = NSAttributedString(string: "12", attributes: kAttributedStyle(kFont(15), kColor(138, 147, 160)))
             }
         }
         

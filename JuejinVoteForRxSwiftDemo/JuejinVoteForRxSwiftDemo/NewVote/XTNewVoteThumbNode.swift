@@ -18,9 +18,6 @@ class XTNewVoteThumbNode: ASDisplayNode {
         self.automaticallyManagesSubnodes = true
         
         weak var weakSelf = self
-        guard let wself = weakSelf else{
-            return
-        }
         
         buttonNode = {
             let node = ASDisplayNode(viewBlock: { () -> UIView in
@@ -32,7 +29,7 @@ class XTNewVoteThumbNode: ASDisplayNode {
                 button.dotSecondColor = kColor(92, 158, 237)
                 button.circleFromColor = kColor(92, 158, 237)
                 button.circleToColor = kColor(72, 206, 193)
-                button.addTarget(self, action: #selector(wself.touchFaveButton(sender:)), for: .touchUpInside)
+                button.addTarget(self, action: #selector(weakSelf?.touchFaveButton(sender:)), for: .touchUpInside)
                 
                 return button
             })

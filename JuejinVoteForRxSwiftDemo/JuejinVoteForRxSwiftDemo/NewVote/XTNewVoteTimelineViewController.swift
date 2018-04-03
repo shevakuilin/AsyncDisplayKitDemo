@@ -9,21 +9,31 @@
 import MJRefresh
 import AsyncDisplayKit
 
+public protocol XTNewVoteTimelineDelegate: class {
+    func toNextVC()
+    func scrollViewDidScroll(_ scrollView: UIScrollView)
+    func scrollViewDidEndDragging(_ scrollView: UIScrollView)
+}
+
 class XTNewVoteTimelineViewController: ASViewController<ASDisplayNode>  {
     
     var rowCount: Int = 0
+    public weak var delegate: XTNewVoteTimelineDelegate?
+//    private var headerView: UIView!
+    private var timeline = ASTableNode()
     
-    lazy var timeline = ASTableNode().then {
-        $0.delegate = self
-        $0.dataSource = self
-        $0.backgroundColor = kColor(239, 242, 245)
-        $0.view.separatorStyle = .none
-        $0.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-    }
+    public var scrollViewDidScrollDelegate = Delegated<UIScrollView, Void>()
+    public var scrollViewDidEndDraggingDelegate = Delegated<UIScrollView, Void>()
     
     init(rowCount: Int) {
         self.rowCount = rowCount
         super.init(node: timeline)
+        timeline.delegate = self
+        timeline.dataSource = self
+        timeline.backgroundColor = kColor(239, 242, 245)
+        timeline.view.separatorStyle = .none
+        timeline.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        timeline.contentInset = UIEdgeInsetsMake(200, 0, 0, 0)
         self.title = "沸点"
     }
     
@@ -34,27 +44,46 @@ class XTNewVoteTimelineViewController: ASViewController<ASDisplayNode>  {
     override func viewDidLoad() {
         super.viewDidLoad()
         setRefresh()
+        registerNotification()
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+        printLog("页面通知已全部清除!!")
+    }
+    
+    private func registerNotification() {
+        NotificationCenter.default.addObserver(self, selector: #selector(setTimelineLinkage(noti:)), name: kNotificationName(TOPIC_DETAILED_HOT_TIMELINE_LINKAGE), object: nil)
+    }
+    
+    @objc private func setTimelineLinkage(noti: Notification) {
+        guard let userInfo = noti.userInfo else {
+            return
+        }
+        guard let offsetY: CGFloat = userInfo["offsetY"] as? CGFloat else {
+            return
+        }
+        timeline.contentOffset = CGPoint(x: timeline.frame.origin.x, y: offsetY)
     }
     
     // NOTE: 设置刷新加载
     private func setRefresh() {
-        weak var weakSelf = self
-        guard let wself = weakSelf else{
-            return
-        }
-        timeline.view.mj_header = MJRefreshNormalHeader.init(refreshingBlock: {
-            wself.timeline.view.mj_header.beginRefreshing()
-            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 2) {
-                wself.timeline.view.mj_header.endRefreshing()
-                wself.timeline.reloadData()
-            }
-        })
+//        timeline.view.mj_header = MJRefreshNormalHeader.init(refreshingBlock: {
+//            wself.timeline.view.mj_header.beginRefreshing()
+//            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 2) {
+//                wself.timeline.view.mj_header.endRefreshing()
+//                wself.timeline.reloadData()
+//            }
+//        })
         
-        timeline.view.mj_footer = MJRefreshBackNormalFooter.init(refreshingBlock:{
-            wself.timeline.view.mj_footer.beginRefreshing()
+        timeline.view.mj_footer = MJRefreshBackNormalFooter.init(refreshingBlock:{ [weak self] () in
+            guard let strongSelf = self else {
+                return
+            }
+            strongSelf.timeline.view.mj_footer.beginRefreshing()
             DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 2, execute: {
-                wself.timeline.view.mj_footer.endRefreshing()
-                wself.timeline.reloadData()
+                strongSelf.timeline.view.mj_footer.endRefreshing()
+                strongSelf.timeline.reloadData()
             })
         })
     }
@@ -86,6 +115,10 @@ extension XTNewVoteTimelineViewController {
 }
 
 extension XTNewVoteTimelineViewController: ASTableDataSource {
+    func numberOfSections(in tableNode: ASTableNode) -> Int {
+        return 1
+    }
+    
     func tableNode(_ tableNode: ASTableNode, numberOfRowsInSection section: Int) -> Int {
         return self.rowCount
     }
@@ -107,9 +140,42 @@ extension XTNewVoteTimelineViewController: ASTableDataSource {
 }
 
 extension XTNewVoteTimelineViewController: ASTableDelegate {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+//        delegate?.scrollViewDidScroll(scrollView)
+        if scrollViewDidScrollDelegate.isDelegateSet {
+            scrollViewDidScrollDelegate.call(scrollView)
+        }
+    }
+
+    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+//        delegate?.scrollViewDidEndDragging(scrollView)
+        if scrollViewDidEndDraggingDelegate.isDelegateSet {
+            scrollViewDidEndDraggingDelegate.call(scrollView)
+        }
+    }
+    
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        if scrollViewDidEndDraggingDelegate.isDelegateSet {
+            scrollViewDidEndDraggingDelegate.call(scrollView)
+        }
+    }
+    
+    func scrollViewWillBeginDecelerating(_ scrollView: UIScrollView) {
+//        printLog("减速动画被调用")
+        if scrollViewDidEndDraggingDelegate.isDelegateSet {
+            scrollViewDidEndDraggingDelegate.call(scrollView)
+        }
+    }
+    
+    
+    func tableNode(_ tableNode: ASTableNode, didSelectRowAt indexPath: IndexPath) {
+        delegate?.toNextVC()
+    }
+    
     func tableNode(_ tableNode: ASTableNode, willBeginBatchFetchWith context: ASBatchContext) {
+        weak var weakSelf = self
         nextPageWithCompletion { (results) in
-            self.insertNewRows(results)
+            weakSelf?.insertNewRows(results)
             context.completeBatchFetching(true)
         }
     }
@@ -117,4 +183,14 @@ extension XTNewVoteTimelineViewController: ASTableDelegate {
     func shouldBatchFetch(for tableNode: ASTableNode) -> Bool {
         return true
     }
+    
+//    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+//        return 38
+//    }
+//
+//    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+//        let view = UIView()
+//        view.backgroundColor = .orange
+//        return view
+//    }
 }

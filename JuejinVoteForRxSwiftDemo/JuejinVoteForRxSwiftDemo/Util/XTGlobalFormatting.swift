@@ -56,6 +56,11 @@ public func kRandomInRange(_ start: Int,
 
 
 
+public func kNotificationName(_ name: String) -> NSNotification.Name {
+    return NSNotification.Name(rawValue: name)
+}
+
+
 struct UIScreenAttribute {
     static let bounds = UIScreen.main.bounds
     static let width = UIScreen.main.bounds.size.width
