@@ -18,7 +18,7 @@ class XTNewVoteOtherTimelineViewController: ASViewController<ASDisplayNode> {
     public var scrollViewDidScrollDelegate = Delegated<UIScrollView, Void>()
     public var scrollViewDidEndDraggingDelegate = Delegated<UIScrollView, Void>()
     
-    init(rowCount: Int) {
+    init(rowCount: Int, _ originY: CGFloat) {
         self.rowCount = rowCount
         super.init(node: timeline)
         timeline.delegate = self
@@ -26,7 +26,7 @@ class XTNewVoteOtherTimelineViewController: ASViewController<ASDisplayNode> {
         timeline.backgroundColor = kColor(239, 242, 245)
         timeline.view.separatorStyle = .none
         timeline.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        timeline.contentInset = UIEdgeInsetsMake(200, 0, 0, 0)
+        timeline.contentInset = UIEdgeInsetsMake(originY, 0, 0, 0)
     }
     
     required init?(coder aDecoder: NSCoder) {

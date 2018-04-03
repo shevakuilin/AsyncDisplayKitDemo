@@ -12,12 +12,12 @@ class ViewController: UIViewController {
     let pagerNode = ASPagerNode()
     let rowCount: Int = 20
     var headerView: UIView!
+    var topicView: UIView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
         pagerNode.setDataSource(self)
         self.pagerNode.frame = CGRect(x: 0, y: 64, width: UIScreenAttribute.width, height: UIScreenAttribute.height)
-//        self.pagerNode.contentInset = UIEdgeInsetsMake(200, 0, 0, 0)
         self.view.addSubnode(pagerNode)
         self.title = "沸点"
         self.view.backgroundColor = kColor(239, 242, 245)
@@ -26,9 +26,22 @@ class ViewController: UIViewController {
     
     
     private func initElements() {
+        topicView = UIView()
+        topicView.backgroundColor = .red
+        topicView.frame = CGRect(x: 0, y: 64, width: UIScreenAttribute.width, height: 200)
+        self.view.addSubview(topicView)
+        
+        let introductionLable = UILabel()
+        introductionLable.text = "Topic Introduction"
+        introductionLable.textColor = .white
+        introductionLable.font = kFont(22)
+        introductionLable.textAlignment = .center
+        introductionLable.frame = kFrame(UIScreenAttribute.halfScreenWidth - 100, 0, 200, 200)
+        self.topicView.addSubview(introductionLable)
+        
         headerView = UIView()
         headerView.backgroundColor = .orange
-        headerView.frame = CGRect(x: 0, y: 238, width: UIScreenAttribute.width, height: 38)
+        headerView.frame = CGRect(x: 0, y: topicView.frame.origin.y + topicView.frame.size.height, width: UIScreenAttribute.width, height: 38)
         self.view.addSubview(headerView)
         
         let titleLabel = UILabel()
@@ -59,21 +72,22 @@ extension ViewController: ASPagerDataSource {
                 guard let strongSelf = self else {
                     return UIViewController()
                 }
-                let timelineVC = XTNewVoteTimelineViewController(rowCount: strongSelf.rowCount)
-                //            timelineVC.delegate = strongSelf
+                let timelineVC = XTNewVoteTimelineViewController(rowCount: strongSelf.rowCount, strongSelf.topicView.frame.size.height + 38)
                 timelineVC.scrollViewDidScrollDelegate.delegate(to: strongSelf, with: { (strongSelf, scrollView) in
                     let offsetY = scrollView.contentOffset.y
                     printLog("监听timeline开始滚动, \(offsetY)")
-                    if offsetY >= -25 {
-                        strongSelf.headerView.frame = CGRect(x: 0, y: 64, width: UIScreenAttribute.width, height: 38)
+                    if offsetY >= -38 {
+                        strongSelf.headerView.frame = kFrame(0, 64, UIScreenAttribute.width, 38)
+                        strongSelf.topicView.frame = kFrame(0, -(strongSelf.topicView.frame.size.height - 64), UIScreenAttribute.width, 200)
                     } else {
-                        strongSelf.headerView.frame = CGRect(x: 0, y: -offsetY + 38, width: UIScreenAttribute.width, height: 38)
+                        strongSelf.headerView.frame = kFrame(0, -offsetY + 26, UIScreenAttribute.width, 38)
+                        strongSelf.topicView.frame = kFrame(0, -offsetY - 174, UIScreenAttribute.width, 200)
                     }
                 })
                 timelineVC.scrollViewDidEndDraggingDelegate.delegate(to: strongSelf, with: { (strongSelf, scrollView) in
                     let offsetY = scrollView.contentOffset.y
                     printLog("监听timeline已经停止拖拽, \(offsetY)")
-                    if offsetY >= 25 {
+                    if offsetY >= 38 {
                         let tempFloat: CGFloat = 64 + 38
                         NotificationCenter.default.post(name: kNotificationName(TOPIC_DETAILED_NEW_TIMELINE_LINKAGE), object: nil, userInfo: ["offsetY": tempFloat])
                     } else {
@@ -90,20 +104,22 @@ extension ViewController: ASPagerDataSource {
                 guard let strongSelf = self else {
                     return UIViewController()
                 }
-                let timelineVC = XTNewVoteOtherTimelineViewController(rowCount: strongSelf.rowCount)
+                let timelineVC = XTNewVoteOtherTimelineViewController(rowCount: strongSelf.rowCount, strongSelf.topicView.frame.size.height + 38)
                 timelineVC.scrollViewDidScrollDelegate.delegate(to: strongSelf, with: { (strongSelf, scrollView) in
                     let offsetY = scrollView.contentOffset.y
                     printLog("监听timeline开始滚动, \(offsetY)")
-                    if offsetY >= -25 {
-                        strongSelf.headerView.frame = CGRect(x: 0, y: 64, width: UIScreenAttribute.width, height: 38)
+                    if offsetY >= -38 {
+                        strongSelf.headerView.frame = kFrame(0, 64, UIScreenAttribute.width, 38)
+                        strongSelf.topicView.frame = kFrame(0, -(strongSelf.topicView.frame.size.height - 64), UIScreenAttribute.width, 200)
                     } else {
-                        strongSelf.headerView.frame = CGRect(x: 0, y: -offsetY + 38, width: UIScreenAttribute.width, height: 38)
+                        strongSelf.headerView.frame = kFrame(0, -offsetY + 26, UIScreenAttribute.width, 38)
+                        strongSelf.topicView.frame = kFrame(0, -offsetY - 174, UIScreenAttribute.width, 200)
                     }
                 })
                 timelineVC.scrollViewDidEndDraggingDelegate.delegate(to: strongSelf, with: { (strongSelf, scrollView) in
                     let offsetY = scrollView.contentOffset.y
                     printLog("监听timeline已经停止拖拽, \(offsetY)")
-                    if offsetY >= 25 {
+                    if offsetY >= -38 {
                         let tempFloat: CGFloat = 64 + 38
                         NotificationCenter.default.post(name: kNotificationName(TOPIC_DETAILED_HOT_TIMELINE_LINKAGE), object: nil, userInfo: ["offsetY": tempFloat])
                     } else {

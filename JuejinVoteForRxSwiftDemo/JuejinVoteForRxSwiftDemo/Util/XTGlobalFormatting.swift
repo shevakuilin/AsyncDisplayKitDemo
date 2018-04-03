@@ -61,10 +61,20 @@ public func kNotificationName(_ name: String) -> NSNotification.Name {
 }
 
 
+
+public func kFrame(_ x: CGFloat,
+                   _ y: CGFloat,
+                   _ width: CGFloat,
+                   _ height: CGFloat) -> CGRect {
+    return CGRect(x: x, y: y, width: width, height: height)
+}
+
+
 struct UIScreenAttribute {
     static let bounds = UIScreen.main.bounds
     static let width = UIScreen.main.bounds.size.width
     static let height = UIScreen.main.bounds.size.height
+    static let halfScreenWidth = UIScreen.main.bounds.size.width/2
 }
 
 

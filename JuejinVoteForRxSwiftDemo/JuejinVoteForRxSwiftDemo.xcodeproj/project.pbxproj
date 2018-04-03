@@ -11,6 +11,7 @@
 		9F3AA133207214FC004C45DE /* XTNotificationKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F3AA132207214FC004C45DE /* XTNotificationKey.swift */; };
 		9F3AA13720723F96004C45DE /* XTNewVoteOtherTimelineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F3AA13620723F96004C45DE /* XTNewVoteOtherTimelineViewController.swift */; };
 		9F3AA13920724125004C45DE /* Delegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F3AA13820724125004C45DE /* Delegate.swift */; };
+		9F3AA13B20733374004C45DE /* XTGlobalVariable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F3AA13A20733374004C45DE /* XTGlobalVariable.swift */; };
 		9F8BC43620073F9800B2256D /* XTNewVoteUserInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F8BC43520073F9800B2256D /* XTNewVoteUserInfoView.swift */; };
 		9F8BC438200853A400B2256D /* XTNewVoteTimelineCellNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F8BC437200853A400B2256D /* XTNewVoteTimelineCellNode.swift */; };
 		9F8BC43C2008F75F00B2256D /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F8BC43B2008F75F00B2256D /* R.generated.swift */; };
@@ -68,6 +69,7 @@
 		9F3AA132207214FC004C45DE /* XTNotificationKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XTNotificationKey.swift; sourceTree = "<group>"; };
 		9F3AA13620723F96004C45DE /* XTNewVoteOtherTimelineViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XTNewVoteOtherTimelineViewController.swift; sourceTree = "<group>"; };
 		9F3AA13820724125004C45DE /* Delegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Delegate.swift; sourceTree = "<group>"; };
+		9F3AA13A20733374004C45DE /* XTGlobalVariable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XTGlobalVariable.swift; sourceTree = "<group>"; };
 		9F8BC43520073F9800B2256D /* XTNewVoteUserInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XTNewVoteUserInfoView.swift; sourceTree = "<group>"; };
 		9F8BC437200853A400B2256D /* XTNewVoteTimelineCellNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XTNewVoteTimelineCellNode.swift; sourceTree = "<group>"; };
 		9F8BC43B2008F75F00B2256D /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = SOURCE_ROOT; };
@@ -264,6 +266,7 @@
 				9FA4BD6920034A36007FC2C9 /* Then.swift */,
 				9F3AA132207214FC004C45DE /* XTNotificationKey.swift */,
 				9F3AA13820724125004C45DE /* Delegate.swift */,
+				9F3AA13A20733374004C45DE /* XTGlobalVariable.swift */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -561,6 +564,7 @@
 				9F8BC45C200C404000B2256D /* TTEasing.m in Sources */,
 				9FC4CBED200C94B20027D8E4 /* ViewController.swift in Sources */,
 				9FA4BD7020034AEF007FC2C9 /* XTRequestParamater.swift in Sources */,
+				9F3AA13B20733374004C45DE /* XTGlobalVariable.swift in Sources */,
 				9FA4BD6A20034A36007FC2C9 /* Then.swift in Sources */,
 				9F3AA13720723F96004C45DE /* XTNewVoteOtherTimelineViewController.swift in Sources */,
 				9FC4E6482043F25D005C70B2 /* XTOtherViewController.swift in Sources */,
