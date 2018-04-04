@@ -9,17 +9,10 @@
 import MJRefresh
 import AsyncDisplayKit
 
-public protocol XTNewVoteTimelineDelegate: class {
-    func toNextVC()
-    func scrollViewDidScroll(_ scrollView: UIScrollView)
-    func scrollViewDidEndDragging(_ scrollView: UIScrollView)
-}
-
 class XTNewVoteTimelineViewController: ASViewController<ASDisplayNode>  {
     
     var rowCount: Int = 0
-    public weak var delegate: XTNewVoteTimelineDelegate?
-//    private var headerView: UIView!
+
     private var timeline = ASTableNode()
     
     public var scrollViewDidScrollDelegate = Delegated<UIScrollView, Void>()
@@ -168,9 +161,9 @@ extension XTNewVoteTimelineViewController: ASTableDelegate {
     }
     
     
-    func tableNode(_ tableNode: ASTableNode, didSelectRowAt indexPath: IndexPath) {
-        delegate?.toNextVC()
-    }
+//    func tableNode(_ tableNode: ASTableNode, didSelectRowAt indexPath: IndexPath) {
+//        delegate?.toNextVC()
+//    }
     
     func tableNode(_ tableNode: ASTableNode, willBeginBatchFetchWith context: ASBatchContext) {
         weak var weakSelf = self

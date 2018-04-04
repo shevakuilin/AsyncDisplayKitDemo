@@ -11,8 +11,7 @@ import AsyncDisplayKit
 class XTNewVoteOtherTimelineViewController: ASViewController<ASDisplayNode> {
     
     var rowCount: Int = 0
-    public weak var delegate: XTNewVoteTimelineDelegate?
-    //    private var headerView: UIView!
+
     private var timeline = ASTableNode()
     
     public var scrollViewDidScrollDelegate = Delegated<UIScrollView, Void>()
