@@ -22,3 +22,10 @@ Thumbs.db
 *.tar
 *.zip
 *.generated.swift
+*.xcuserstate
+project.xcworkspace
+xcuserdata
+UserInterfaceState.xcuserstate
+project.xcworkspace/
+xcuserdata/
+UserInterface.xcuserstate
